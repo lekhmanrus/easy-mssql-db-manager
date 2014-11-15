@@ -1,0 +1,18 @@
+<div ng-show="showTimer">
+  <div class="freeze-time freeze-time-3 my-slide my-slide-right-1" ng-show="freezeTime == 3">
+    <span>&nbsp;3</span>
+  </div>
+  <div class="freeze-time freeze-time-2 my-slide my-slide-right-1" ng-show="freezeTime == 2">
+    <span>&nbsp;2</span>
+  </div>
+  <div class="freeze-time freeze-time-1 my-slide my-slide-right-1" ng-show="freezeTime == 1">
+    <span>&nbsp;1</span>
+  </div>
+  <div class="freeze-time freeze-time-0 my-slide my-slide-down-1" ng-show="freezeTime == 0">
+    <span>Start</span>
+  </div>
+</div>
+<div ng-show="showTimer" class="timer">
+  Time left: 
+  <span ng-bind="timeLeft"></span>
+</div>
