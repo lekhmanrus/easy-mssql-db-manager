@@ -1,0 +1,30 @@
+[
+  {
+    "procedure": "DepartmentAreaLeader",
+    "name": ""
+  },
+  {
+    "procedure": "AreaDepartmentPersonal",
+    "name": ""
+  },
+  {
+    "procedure": "DepartmentAreaObjectSchedule",
+    "name": ""
+  },
+  {
+    "procedure": "ObjectTechnique",
+    "name": ""
+  },
+  {
+    "procedure": "DepartmentOrganizationPeriodWorkObjects",
+    "name": ""
+  },
+  {
+    "procedure": "WorkExcDeadline",
+    "name": ""
+  },
+  {
+    "procedure": "MaterialExcCost",
+    "name": ""
+  }
+]

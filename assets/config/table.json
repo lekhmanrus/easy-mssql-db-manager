@@ -1,0 +1,138 @@
+[
+  {
+    "table": "Organization",
+    "name": ""
+  },
+  {
+    "table": "Team",
+    "name": ""
+  },
+  {
+    "table": "PersonalCategory",
+    "name": ""
+  },
+  {
+    "table": "Sex",
+    "name": ""
+  },
+  {
+    "table": "Personal",
+    "name": ""
+  },
+  {
+    "table": "Area",
+    "name": ""
+  },
+  {
+    "table": "Department",
+    "name": ""
+  },
+  {
+    "table": "WorkType",
+    "name": ""
+  },
+  {
+    "table": "Work",
+    "name": ""
+  },
+  {
+    "table": "ObjectCategory",
+    "name": ""
+  },
+  {
+    "table": "Schedule",
+    "name": ""
+  },
+  {
+    "table": "ScheduleItem",
+    "name": ""
+  },
+  {
+    "table": "Object",
+    "name": ""
+  },
+  {
+    "table": "Unit",
+    "name": ""
+  },
+  {
+    "table": "Material",
+    "name": ""
+  },
+  {
+    "table": "Cost",
+    "name": ""
+  },
+  {
+    "table": "PerformedCost",
+    "name": ""
+  },
+  {
+    "table": "Building",
+    "name": ""
+  },
+  {
+    "table": "GroupType",
+    "name": ""
+  },
+  {
+    "table": "Group",
+    "name": ""
+  },
+  {
+    "table": "AreaLeader",
+    "name": ""
+  },
+  {
+    "table": "TechniqueType",
+    "name": ""
+  },
+  {
+    "table": "Technique",
+    "name": ""
+  },
+  {
+    "table": "TechniqueDepartment",
+    "name": ""
+  },
+  {
+    "table": "TechniqueObject",
+    "name": ""
+  },
+  {
+    "table": "Technology",
+    "name": ""
+  },
+  {
+    "table": "WorkerCategory",
+    "name": ""
+  },
+  {
+    "table": "Worker",
+    "name": ""
+  },
+  {
+    "table": "TeamWorker",
+    "name": ""
+  },
+  {
+    "table": "AreaPersonal",
+    "name": ""
+  },
+  {
+    "table": "DepartmentPersonal",
+    "name": ""
+  },
+  {
+    "table": "TeamObject",
+    "name": ""
+  },
+  {
+    "table": "TeamLeader",
+    "name": ""
+  },
+  {
+    "table": "DepartmentLeader",
+    "name": ""
+  }
+]

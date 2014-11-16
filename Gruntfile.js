@@ -19,6 +19,18 @@ module.exports = function(grunt) {
     require('child_process').exec('bower install', {cwd: './out'}, puts);
   });
 
+  grunt.registerTask('npm-install', 'install the application dependencies', function() {
+    var done = this.async();
+    var puts = function(error, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+      if(error)
+        console.log('exec error: ' + error);
+      done();
+    };
+    require('child_process').exec('npm install', {cwd: './out'}, puts);
+  });
+
   grunt.config.set('clean', {
     out: [ 'out' ]
   });
@@ -28,11 +40,6 @@ module.exports = function(grunt) {
       cwd: 'assets',
       expand: true,
       src: '**',
-      dest: 'out'
-    },
-    bower: {
-      expand: true,
-      src: 'bower.json',
       dest: 'out'
     }
   });
@@ -66,25 +73,25 @@ module.exports = function(grunt) {
     index: {
       src: 'assets/index.html',
       dest: 'out/index.html',
-
       options: htmlBuildOptions
     }
   });
 
   grunt.config.set('nodewebkit', {
     options: {
-      build_dir: './build',
+      buildDir: './build',
       mac: false,
       win: true,
-      linux32: true,
-      linux64: true,
-      version: '0.9.2'
+      linux32: false,
+      linux64: false,
+      version: '0.11.0'
     },
-    src: ['./out/**/*']
+    //out: ['./out']
+    out: ['./out/**/*']
   });
 
   grunt.config.set('watch', {
-    src: {
+    assets: {
       files: [ 'assets/**/**/**' ],
       tasks: [ 'make' ],
     },
@@ -99,6 +106,7 @@ module.exports = function(grunt) {
       options: {
         hostname: 'localhost',
         port: 8888,
+        //base: 'out/app',
         base: 'out',
         keepalive: true,
         open: {
@@ -128,6 +136,7 @@ module.exports = function(grunt) {
   grunt.registerTask('make', [
     'clean',
     'copy',
+    'npm-install',
     'bower-install',
     'htmlbuild',
     'wiredep'

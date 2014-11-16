@@ -1,0 +1,49 @@
+{
+  "name": "easy-mssql-db-manager",
+  "version": "0.0.1",
+  "description": "Easy to use and user-friendly manager for MS SQL database.",
+  "keywords": [
+    "mssql",
+    "db",
+    "manager",
+    "easy",
+    "node-webkit"
+  ],
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lekhmanrus/easy-mssql-db-manager.git"
+  },
+  "author": {
+    "name": "Ruslan Lekhman",
+    "email": "lekhman-ruslan@i.ua"
+  },
+  "private": false,
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/lekhmanrus/easy-mssql-db-manager/blob/master/LICENSE"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/lekhmanrus/easy-mssql-db-manager/issues"
+  },
+  "readme": "https://github.com/lekhmanrus/easy-mssql-db-manager/blob/master/README.md",
+  "homepage": "https://github.com/lekhmanrus/easy-mssql-db-manager",
+  
+  "window": {
+    "title": "SyMath",
+    "icon": "favicon.png",
+    "toolbar": true,
+    "frame": true,
+    "min_width": 900,
+    "min_height": 370,
+    "width": 900,
+    "height": 657,
+    "position": "center"
+  },
+  
+  "dependencies": {
+    "mssql": "latest"
+  }
+}

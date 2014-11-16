@@ -1,0 +1,54 @@
+[
+  {
+    "view": "TechniqueObjectView",
+    "name": ""
+  },
+  {
+    "view": "ObjectCostView",
+    "name": ""
+  },
+  {
+    "view": "ObjectReportView",
+    "name": ""
+  },
+  {
+    "view": "ObjectByPeriodWorkView",
+    "name": ""
+  },
+  {
+    "view": "WorkExcDeadlineView",
+    "name": ""
+  },
+  {
+    "view": "MaterialExcCostView",
+    "name": ""
+  },
+  {
+    "view": "WorkTeamObjectView",
+    "name": ""
+  },
+  {
+    "view": "DepartmentLeaderView",
+    "name": ""
+  },
+  {
+    "view": "AreaLeaderView",
+    "name": ""
+  },
+  {
+    "view": "PersonalView",
+    "name": ""
+  },
+  {
+    "view": "ObjectScheduleView",
+    "name": ""
+  },
+  {
+    "view": "TeamObjectWorkerView",
+    "name": ""
+  },
+  {
+    "view": "TechniqueDepartmentView",
+    "name": ""
+  }
+]

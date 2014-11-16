@@ -1,0 +1,30 @@
+[
+  {
+    "function": "TeamObjectWorker",
+    "name": ""
+  },
+  {
+    "function": "DepartmentTechnique",
+    "name": ""
+  },
+  {
+    "function": "ObjectSchedule",
+    "name": ""
+  },
+  {
+    "function": "ObjectCost",
+    "name": ""
+  },
+  {
+    "function": "ObjectReport",
+    "name": ""
+  },
+  {
+    "function": "WorkTeamPeriod",
+    "name": ""
+  },
+  {
+    "function": "WorkTypePeriod",
+    "name": ""
+  }
+]
