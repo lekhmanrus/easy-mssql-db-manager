@@ -4,8 +4,6 @@ angular
 .module('EMSSQLDBMApp.controllers')
 .controller('MainCtrl', [ '$scope', '$modal', 'Authentication', function($scope, $modal, Authentication) {
 
-  console.log(Authentication.getMethodName());
-
   $scope.authenticated = Authentication.isAuthenticated();
   $scope.user = {
     username: Authentication.getUsername() ? Authentication.getUsername() : '',
@@ -13,32 +11,17 @@ angular
   };
 
   $scope.signIn = function() {
-    if(!$scope.user.username) {
-      $modal({
-        title: 'Error',
-        content: 'Login is empty.',
-        show: true
-      });
-      return false;
-    }
-    if(!$scope.user.password) {
-      $modal({
-        title: 'Error',
-        content: 'Password is empty.',
-        show: true
-      });
-      return false;
-    }
-    $scope.authenticated = Authentication.signIn($scope.user.username, $scope.user.password);
-    if(!$scope.authenticated) {
-      $modal({
-        title: 'Error',
-        content: 'Login or password is incorrect. Check it and try again',
-        show: true
-      });
-      return false;
-    }
-    $scope.user.username = Authentication.getUsername();
+    Authentication.signIn(
+      $scope.user.username, $scope.user.password, function(e) {
+        $modal({
+          title: 'Error',
+          content: e.message,
+          show: true
+        });
+      }, function(authenticated) {
+        $scope.authenticated = authenticated;
+      }
+    );
   };
   
   $scope.signOut = function() {

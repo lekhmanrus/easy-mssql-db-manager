@@ -45,6 +45,6 @@
   
   "dependencies": {
     "mssql": "latest",
-    "nconf": "latest"
+    "bluebird": "latest"
   }
 }

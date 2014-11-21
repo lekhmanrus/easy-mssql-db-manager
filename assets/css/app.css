@@ -68,7 +68,3 @@ span#logo {
   background-color: #555555;
   color: #F5F5F5;
 }
-
-.navbar-default .navbar-nav > li.logged-as {
-  padding-top: 15px;
-}
