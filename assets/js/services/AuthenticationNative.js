@@ -12,10 +12,10 @@ angular
   var asyncSignIn = function(username, password) {
     var deferred = $q.defer();
     if(!username) {
-      throw new Error("Login is empty.");
+      deferred.reject(new Error("Login is empty."));
     }
     if(!password) {
-      throw new Error("Password is empty.");
+      deferred.reject(new Error("Password is empty."));
     }
     conn
       .open(username, password)

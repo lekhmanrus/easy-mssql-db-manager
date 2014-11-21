@@ -11,18 +11,16 @@ angular
   };
 
   $scope.signIn = function() {
-    try {
-      Authentication.signIn($scope.user.username, $scope.user.password);
-    }
-    catch(e) {
+    Authentication.signIn($scope.user.username, $scope.user.password)
+    .catch(function(e) {
       $modal({
         title: 'Error',
         content: e.message,
         show: true
       });
-    };
+    });
   };
-  
+
   $scope.signOut = function() {
     $scope.authenticated = Authentication.signOut();
     $scope.user.password = '';

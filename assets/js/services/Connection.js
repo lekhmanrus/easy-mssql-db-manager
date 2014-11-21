@@ -17,7 +17,6 @@ angular
     connection.conn.connect(function(err) {
       if(err) {
         deferred.reject(err);
-        return false;
       }
       deferred.resolve();
     });
