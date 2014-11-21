@@ -2,31 +2,36 @@
 
 angular
 .module('EMSSQLDBMApp.services')
-.service('AuthenticationNative', [ 'Connection', function(conn) {
+.service('AuthenticationNative', [ '$q', 'Connection', function($q, conn) {
   
   var authentication = { };
 
   authentication.authenticated = false;
   authentication.username = false;
   
-  authentication.signIn = function(username, password, errorCb, doneCb) {
+  var asyncSignIn = function(username, password) {
+    var deferred = $q.defer();
     if(!username) {
-      errorCb(new Error("Login is empty."));
-      return false;
+      throw new Error("Login is empty.");
     }
     if(!password) {
-      errorCb(new Error("Password is empty."));
-      return false;
+      throw new Error("Password is empty.");
     }
-    conn.open(username, password, function(err) {
-      if(err) {
-        errorCb(err);
-        return false;
-      }
-      authentication.authenticated = true;
-      authentication.username = username;
-      doneCb(authentication.authenticated);
-    });
+    conn
+      .open(username, password)
+      .then(function() {
+        authentication.authenticated = true;
+        authentication.username = username;
+        deferred.resolve(authentication.authenticated);
+      })
+      .catch(function(e) {
+        deferred.reject(e);
+      });
+    return deferred.promise;
+  };
+
+  authentication.signIn = function(username, password) {
+    return asyncSignIn(username, password);
   };
 
   authentication.signOut = function() {

@@ -11,17 +11,16 @@ angular
   };
 
   $scope.signIn = function() {
-    Authentication.signIn(
-      $scope.user.username, $scope.user.password, function(e) {
-        $modal({
-          title: 'Error',
-          content: e.message,
-          show: true
-        });
-      }, function(authenticated) {
-        $scope.authenticated = authenticated;
-      }
-    );
+    try {
+      Authentication.signIn($scope.user.username, $scope.user.password);
+    }
+    catch(e) {
+      $modal({
+        title: 'Error',
+        content: e.message,
+        show: true
+      });
+    };
   };
   
   $scope.signOut = function() {

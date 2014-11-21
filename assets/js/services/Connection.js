@@ -2,20 +2,30 @@
 
 angular
 .module('EMSSQLDBMApp.services')
-.service('Connection', [ 'MSSQL', function(sql) {
+.service('Connection', [ '$q', function($q) {
 
-  var connection = { };  
+  var sql = require('mssql'),
+      connection = { };  
 
   connection.config = require('./config/connection.json');
 
-  connection.open = function(username, password, errorCb) {
+  var asyncOpen = function(username, password) {
+    var deferred = $q.defer();
     connection.config.user     = username;
     connection.config.password = password;
     connection.conn = new sql.Connection(connection.config);
-    connection.conn.connectAsync()
-    .catch(function(e) {
-      errorCb(e);
+    connection.conn.connect(function(err) {
+      if(err) {
+        deferred.reject(err);
+        return false;
+      }
+      deferred.resolve();
     });
+    return deferred.promise;
+  };
+
+  connection.open = function(username, password) {
+    return asyncOpen(username, password);
   };
 
   connection.get = function() {

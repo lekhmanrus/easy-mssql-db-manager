@@ -44,7 +44,6 @@
   },
   
   "dependencies": {
-    "mssql": "latest",
-    "bluebird": "latest"
+    "mssql": "latest"
   }
 }
