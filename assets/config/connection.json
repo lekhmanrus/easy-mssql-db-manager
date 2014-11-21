@@ -1,8 +1,8 @@
 {
-  server: 'COMP-PC',
-  database: 'BuildingOrganization',
-  stream: true,
-  options: {
-    encrypt: true
+  "server": "COMP-PC",
+  "database": "BuildingOrganization",
+  "stream": true,
+  "options": {
+    "encrypt": true
   }
 }

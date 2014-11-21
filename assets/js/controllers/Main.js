@@ -4,6 +4,8 @@ angular
 .module('EMSSQLDBMApp.controllers')
 .controller('MainCtrl', [ '$scope', '$modal', 'Authentication', function($scope, $modal, Authentication) {
 
+  console.log(Authentication.getMethodName());
+
   $scope.authenticated = Authentication.isAuthenticated();
   $scope.user = {
     username: Authentication.getUsername() ? Authentication.getUsername() : '',
