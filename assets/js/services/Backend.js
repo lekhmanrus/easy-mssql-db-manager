@@ -2,11 +2,11 @@
 
 angular
 .module('EMSSQLDBMApp.services')
-.factory('Backend', [ 'BackendExpress', 'BackendNative', function(be, bn) {
+.factory('Backend', [ '$injector', function($injector) {
 
   if(typeof(require) !== 'undefined') {
-    return bn;
+    return $injector.get('BackendNative');
   }
-  return be;
+  return $injector.get('BackendExpress');
 
 }]);

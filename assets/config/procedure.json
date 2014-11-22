@@ -1,30 +1,30 @@
 [
   {
-    "procedure": "DepartmentAreaLeader",
-    "name": ""
+    "gist": "DepartmentAreaLeader",
+    "name": "Leaders of departments or/and areas"
   },
   {
-    "procedure": "AreaDepartmentPersonal",
-    "name": ""
+    "gist": "AreaDepartmentPersonal",
+    "name": "Personal of areas or/and departments"
   },
   {
-    "procedure": "DepartmentAreaObjectSchedule",
-    "name": ""
+    "gist": "DepartmentAreaObjectSchedule",
+    "name": "Objects schedule of departments or/and areas"
   },
   {
-    "procedure": "ObjectTechnique",
-    "name": ""
+    "gist": "ObjectTechnique",
+    "name": "Technique of object"
   },
   {
-    "procedure": "DepartmentOrganizationPeriodWorkObjects",
-    "name": ""
+    "gist": "DepartmentOrganizationPeriodWorkObjects",
+    "name": "Objects works of departments or/and organizations at period"
   },
   {
-    "procedure": "WorkExcDeadline",
-    "name": ""
+    "gist": "WorkExcDeadline",
+    "name": "Excess time on works"
   },
   {
-    "procedure": "MaterialExcCost",
-    "name": ""
+    "gist": "MaterialExcCost",
+    "name": "Excess cost on materials"
   }
 ]

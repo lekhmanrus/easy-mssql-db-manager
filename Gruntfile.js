@@ -12,8 +12,9 @@ module.exports = function(grunt) {
     var puts = function(error, stdout, stderr) {
       console.log(stdout);
       console.log(stderr);
-      if(error)
+      if(error) {
         console.log('exec error: ' + error);
+      }
       done();
     };
     require('child_process').exec('bower install', {cwd: './out'}, puts);
@@ -24,8 +25,9 @@ module.exports = function(grunt) {
     var puts = function(error, stdout, stderr) {
       console.log(stdout);
       console.log(stderr);
-      if(error)
+      if(error) {
         console.log('exec error: ' + error);
+      }
       done();
     };
     require('child_process').exec('npm install', {cwd: './out'}, puts);
@@ -40,8 +42,9 @@ module.exports = function(grunt) {
     var puts = function(error, stdout, stderr) {
       console.log(stdout);
       console.log(stderr);
-      if(error)
+      if(error) {
         console.log('exec error: ' + error);
+      }
       done();
     };
     require('child_process').exec('node www', {cwd: './bin'}, puts);
@@ -80,10 +83,11 @@ module.exports = function(grunt) {
           bundle: [
             'out/js/*.js',
             'out/js/controllers/*.js',
+            'out/js/directives/*.js',
             'out/js/services/native/*.js',
             'out/js/services/express/*.js',
             'out/js/services/*.js',
-            'out/js/directives/*.js'
+            'out/js/filters/*.js'
           ]
         },
         styles: {
@@ -107,7 +111,7 @@ module.exports = function(grunt) {
 
   grunt.config.set('watch', {
     assets: {
-      files: [ 'assets/**/**/**' ],
+      files: [ 'assets/**/**' ],
       tasks: [ 'make' ],
     },
     bower: {
@@ -116,20 +120,9 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.config.set('connect', {
-    app: {
-      options: {
-        hostname: 'localhost',
-        port: 8888,
-        //base: 'out/app',
-        base: 'out',
-        keepalive: true,
-        open: {
-          target: 'http://localhost:8888',
-          app: 'start',
-          callback: function() { }
-        }
-      }
+  grunt.config.set('open', {
+    dev: {
+      path: 'http://localhost:' + (require('./package.json').httpPort || process.env.PORT || 3000)
     }
   });
 
@@ -144,7 +137,6 @@ module.exports = function(grunt) {
       }, {
         grunt: true,
         args: ['server-run']
-        //args: ['connect']
       }]
     }
   });
@@ -165,11 +157,12 @@ module.exports = function(grunt) {
 
   grunt.registerTask('web', [
     'make',
-    'connect'
+    'open'
   ]);
 
   grunt.registerTask('default', [
     'make',
+    'open',
     'parallel'
   ]);
 

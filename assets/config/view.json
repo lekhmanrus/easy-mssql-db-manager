@@ -1,54 +1,54 @@
 [
   {
-    "view": "TechniqueObjectView",
-    "name": ""
+    "gist": "TechniqueObjectView",
+    "name": "Technique of objects"
   },
   {
-    "view": "ObjectCostView",
-    "name": ""
+    "gist": "ObjectCostView",
+    "name": "Cost of objects"
   },
   {
-    "view": "ObjectReportView",
-    "name": ""
+    "gist": "ObjectReportView",
+    "name": "Reports of objects"
   },
   {
-    "view": "ObjectByPeriodWorkView",
-    "name": ""
+    "gist": "ObjectByPeriodWorkView",
+    "name": "Work period of objects"
   },
   {
-    "view": "WorkExcDeadlineView",
-    "name": ""
+    "gist": "WorkExcDeadlineView",
+    "name": "Excess time on works"
   },
   {
-    "view": "MaterialExcCostView",
-    "name": ""
+    "gist": "MaterialExcCostView",
+    "name": "Excess cost on materials"
   },
   {
-    "view": "WorkTeamObjectView",
-    "name": ""
+    "gist": "WorkTeamObjectView",
+    "name": "Works of teams at objects"
   },
   {
-    "view": "DepartmentLeaderView",
-    "name": ""
+    "gist": "DepartmentLeaderView",
+    "name": "Leaders of departments"
   },
   {
-    "view": "AreaLeaderView",
-    "name": ""
+    "gist": "AreaLeaderView",
+    "name": "Leaders of areas"
   },
   {
-    "view": "PersonalView",
-    "name": ""
+    "gist": "PersonalView",
+    "name": "Personal"
   },
   {
-    "view": "ObjectScheduleView",
-    "name": ""
+    "gist": "ObjectScheduleView",
+    "name": "Schedule of objects"
   },
   {
-    "view": "TeamObjectWorkerView",
-    "name": ""
+    "gist": "TeamObjectWorkerView",
+    "name": "Workers of teams at objects"
   },
   {
-    "view": "TechniqueDepartmentView",
-    "name": ""
+    "gist": "TechniqueDepartmentView",
+    "name": "Technique of departments"
   }
 ]

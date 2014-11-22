@@ -28,6 +28,9 @@
   ],
   "dependencies": {
     "angular": "latest",
+    "angular-animate": "latest",
+    "angular-motion": "latest",
+    "angular-resource": "latest",
     "angular-strap": "latest",
     "jquery": "latest"
   }

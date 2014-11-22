@@ -1,30 +1,22 @@
-<h3>Tables</h3>
-<ul class="nav nav-sidebar">
-  <li><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-  <li><a href="#">Reports</a></li>
-  <li><a href="#">Analytics</a></li>
-  <li><a href="#">Export</a></li>
-</ul>
-
-<h3>Views</h3>
-<ul class="nav nav-sidebar">
-  <li><a href="">Nav item</a></li>
-  <li><a href="">Nav item again</a></li>
-  <li><a href="">One more nav</a></li>
-  <li><a href="">Another nav item</a></li>
-  <li><a href="">More navigation</a></li>
-</ul>
-
-<h3>Functions</h3>
-<ul class="nav nav-sidebar">
-  <li class="active"><a href="">Nav item again</a></li>
-  <li><a href="">One more nav</a></li>
-  <li><a href="">Another nav item</a></li>
-</ul>
-
-<h3>Procedures</h3>
-<ul class="nav nav-sidebar">
-  <li><a href="">Nav item again</a></li>
-  <li><a href="">One more nav</a></li>
-  <li><a href="">Another nav item</a></li>
-</ul>
+<div class="panel-group" ng-model="activePanel" bs-collapse>
+  <div class="panel panel-default" ng-repeat="object in objects">
+    <div class="panel-heading" bs-collapse-toggle>
+      <h4 class="panel-title">
+        <a>
+          <h3>{{ object.name }} <small>({{ object.data.length }})</small></h3>
+        </a>
+      </h4>
+    </div>
+    <div class="panel-collapse" bs-collapse-target>
+      <div class="panel-body">
+        <ul class="nav nav-sidebar">
+          <li ng-repeat="item in object.data"
+              ng-class="{ active: curObject.data.gist === item.gist }"
+              ng-click="selectObject(object.type, item)">
+            <a href="#" ng-bind="item.name"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

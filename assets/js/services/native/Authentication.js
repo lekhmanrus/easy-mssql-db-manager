@@ -2,11 +2,12 @@
 
 angular
 .module('EMSSQLDBMApp.services')
-.service('AuthenticationNative', [ '$q', 'Connection', function($q, conn) {
+.service('AuthenticationNative', [ '$q', 'Connection', 'Backend', function($q, conn, backend) {
   
   var authentication = { 
     authenticated: false,
-    username: false
+    username: false,
+    permissions: [ ]
   };
 
   authentication.signIn = function(username, password) {
@@ -20,9 +21,21 @@ angular
     conn
       .open(username, password)
       .then(function() {
-        authentication.authenticated = true;
-        authentication.username = username;
-        deferred.resolve(authentication.authenticated);
+        var q = "SELECT [p].[permission_name] ";
+        q += "FROM [sys].[database_principals] [dp] ";
+        q += "INNER JOIN [sys].[database_role_members] [drm] ON [drm].[member_principal_id] = [dp].[principal_id] ";
+        q += "INNER JOIN [sys].[database_permissions] [p] ON [p].[grantee_principal_id] = [drm].[role_principal_id] ";
+        q += "WHERE [dp].[name] = '" + username + "';";
+        backend.dbQuery(q, function(row) {
+            authentication.permissions.push(row.permission_name);
+          }, null, function(res) {
+            authentication.authenticated = true;
+            authentication.username = username;
+            deferred.resolve(authentication.authenticated);
+          }, function(err) {
+            deferred.reject(err);
+          }
+        );
       })
       .catch(function(e) {
         deferred.reject(e);
@@ -33,6 +46,7 @@ angular
   authentication.signOut = function() {
     conn.close();
     authentication.authenticated = false;
+    authentication.permissions = [ ];
     return authentication.authenticated;
   };
 
@@ -42,6 +56,10 @@ angular
 
   authentication.getUsername = function() {
     return authentication.username;
+  };
+
+  authentication.getPermission = function() {
+    return authentication.permissions;
   };
 
   return authentication;

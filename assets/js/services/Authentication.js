@@ -2,11 +2,11 @@
 
 angular
 .module('EMSSQLDBMApp.services')
-.factory('Authentication', [ 'AuthenticationExpress', 'AuthenticationNative', function(ae, an) {
+.factory('Authentication', [ '$injector', function($injector) {
 
   if(typeof(require) !== 'undefined') {
-    return an;
+    return $injector.get('AuthenticationNative');
   }
-  return ae;
+  return $injector.get('AuthenticationExpress');
 
 }]);

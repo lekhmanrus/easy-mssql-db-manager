@@ -2,15 +2,18 @@
 
 angular.module('EMSSQLDBMApp.controllers', [ ]);
 angular.module('EMSSQLDBMApp.directives', [ ]);
+angular.module('EMSSQLDBMApp.filters', [ ]);
 angular.module('EMSSQLDBMApp.services', [ ]);
 
 angular
 .module('EMSSQLDBMApp', [
   'EMSSQLDBMApp.controllers',
   'EMSSQLDBMApp.directives',
+  'EMSSQLDBMApp.filters',
   'EMSSQLDBMApp.services',
   'mgcrea.ngStrap',
-  'ngAnimate'
+  'ngAnimate',
+  'ngResource'
 ])
 
 .config(function($modalProvider) {

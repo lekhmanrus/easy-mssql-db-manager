@@ -1,138 +1,138 @@
 [
   {
-    "table": "Organization",
-    "name": ""
+    "gist": "Organization",
+    "name": "Organizations"
   },
   {
-    "table": "Team",
-    "name": ""
+    "gist": "Team",
+    "name": "Teams"
   },
   {
-    "table": "PersonalCategory",
-    "name": ""
+    "gist": "PersonalCategory",
+    "name": "Categories of personal"
   },
   {
-    "table": "Sex",
-    "name": ""
+    "gist": "Sex",
+    "name": "Sex"
   },
   {
-    "table": "Personal",
-    "name": ""
+    "gist": "Personal",
+    "name": "Personal"
   },
   {
-    "table": "Area",
-    "name": ""
+    "gist": "Area",
+    "name": "Areas"
   },
   {
-    "table": "Department",
-    "name": ""
+    "gist": "Department",
+    "name": "Departments"
   },
   {
-    "table": "WorkType",
-    "name": ""
+    "gist": "WorkType",
+    "name": "Types of work"
   },
   {
-    "table": "Work",
-    "name": ""
+    "gist": "Work",
+    "name": "Works"
   },
   {
-    "table": "ObjectCategory",
-    "name": ""
+    "gist": "ObjectCategory",
+    "name": "Categories of objects"
   },
   {
-    "table": "Schedule",
-    "name": ""
+    "gist": "Schedule",
+    "name": "Schedule"
   },
   {
-    "table": "ScheduleItem",
-    "name": ""
+    "gist": "ScheduleItem",
+    "name": "Items of schedule"
   },
   {
-    "table": "Object",
-    "name": ""
+    "gist": "Object",
+    "name": "Objects"
   },
   {
-    "table": "Unit",
-    "name": ""
+    "gist": "Unit",
+    "name": "Units"
   },
   {
-    "table": "Material",
-    "name": ""
+    "gist": "Material",
+    "name": "Materials"
   },
   {
-    "table": "Cost",
-    "name": ""
+    "gist": "Cost",
+    "name": "Cost"
   },
   {
-    "table": "PerformedCost",
-    "name": ""
+    "gist": "PerformedCost",
+    "name": "Performed cost"
   },
   {
-    "table": "Building",
-    "name": ""
+    "gist": "Building",
+    "name": "Building"
   },
   {
-    "table": "GroupType",
-    "name": ""
+    "gist": "GroupType",
+    "name": "Types of groups"
   },
   {
-    "table": "Group",
-    "name": ""
+    "gist": "Group",
+    "name": "Groups"
   },
   {
-    "table": "AreaLeader",
-    "name": ""
+    "gist": "AreaLeader",
+    "name": "Leaders of areas"
   },
   {
-    "table": "TechniqueType",
-    "name": ""
+    "gist": "TechniqueType",
+    "name": "Types of technique"
   },
   {
-    "table": "Technique",
-    "name": ""
+    "gist": "Technique",
+    "name": "Technique"
   },
   {
-    "table": "TechniqueDepartment",
-    "name": ""
+    "gist": "TechniqueDepartment",
+    "name": "Technique of departments"
   },
   {
-    "table": "TechniqueObject",
-    "name": ""
+    "gist": "TechniqueObject",
+    "name": "Technique of objects"
   },
   {
-    "table": "Technology",
-    "name": ""
+    "gist": "Technology",
+    "name": "Technologies"
   },
   {
-    "table": "WorkerCategory",
-    "name": ""
+    "gist": "WorkerCategory",
+    "name": "Categories of workers"
   },
   {
-    "table": "Worker",
-    "name": ""
+    "gist": "Worker",
+    "name": "Workers"
   },
   {
-    "table": "TeamWorker",
-    "name": ""
+    "gist": "TeamWorker",
+    "name": "Workers of teams"
   },
   {
-    "table": "AreaPersonal",
-    "name": ""
+    "gist": "AreaPersonal",
+    "name": "Personal of areas"
   },
   {
-    "table": "DepartmentPersonal",
-    "name": ""
+    "gist": "DepartmentPersonal",
+    "name": "Personal of departments"
   },
   {
-    "table": "TeamObject",
-    "name": ""
+    "gist": "TeamObject",
+    "name": "Objects of teams"
   },
   {
-    "table": "TeamLeader",
-    "name": ""
+    "gist": "TeamLeader",
+    "name": "Leaders of teams"
   },
   {
-    "table": "DepartmentLeader",
-    "name": ""
+    "gist": "DepartmentLeader",
+    "name": "Leaders of departments"
   }
 ]
