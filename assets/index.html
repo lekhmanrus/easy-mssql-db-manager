@@ -20,6 +20,12 @@
 </head>
 <body ng-controller="MainCtrl">
 
+  <div ng-show="loading" class="preloader">
+    <div class="preloader-container">
+      <span class="animated-preloader"></span>
+    </div>
+  </div>
+
   <div ng-if="!authenticated" class="container signin-container" ng-include="'partials/sign-in.html'"></div>
 
   <div ng-if="authenticated" class="main-container">

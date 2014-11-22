@@ -42,7 +42,7 @@ angular
   };
 
   connection.request = function(q) {
-    var request = new sql.Request(conn.get());
+    var request = new sql.Request(connection.get());
     request.query(q);
     return request;
   };

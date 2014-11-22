@@ -9,6 +9,7 @@ angular
     username: Authentication.getUsername() ? Authentication.getUsername() : '',
     password: ''
   };
+  $scope.loading = false;
 
   var loadNames = function() {
     var tableNames = Backend.getTableNames();
@@ -18,13 +19,16 @@ angular
   };
 
   $scope.signIn = function() {
+    $scope.loading = true;
     Authentication
       .signIn($scope.user.username, $scope.user.password)
       .then(function(authenticated) {
         $scope.authenticated = authenticated;
         loadNames();
+        $scope.loading = false;
       })
       .catch(function(e) {
+        $scope.loading = false;
         $modal({
           title: 'Error',
           content: e.message,
