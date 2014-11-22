@@ -35,6 +35,22 @@ module.exports = function(grunt) {
     out: [ 'out' ]
   });
 
+  grunt.registerTask('server-run', 'run express server', function() {
+    var done = this.async();
+    var puts = function(error, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+      if(error)
+        console.log('exec error: ' + error);
+      done();
+    };
+    require('child_process').exec('node www', {cwd: './bin'}, puts);
+  });
+
+  grunt.config.set('clean', {
+    out: [ 'out' ]
+  });
+
   grunt.config.set('copy', {
     sources: {
       cwd: 'assets',
@@ -51,29 +67,29 @@ module.exports = function(grunt) {
     }
   });
 
-  var htmlBuildOptions = {
-    logOptions: true,
-    relative: true,
-    beautify: true,
-    prefix: ' ',
-    scripts: {
-      bundle: [
-        'out/js/*.js',
-        'out/js/controllers/*.js',
-        'out/js/services/*.js',
-        'out/js/directives/*.js'
-      ]
-    },
-    styles: {
-      bundle: 'out/css/*.css'
-    }
-  };
-
   grunt.config.set('htmlbuild', {
-    index: {
+    app: {
       src: 'assets/index.html',
       dest: 'out/index.html',
-      options: htmlBuildOptions
+      options: {
+        logOptions: true,
+        relative: true,
+        beautify: true,
+        prefix: ' ',
+        scripts: {
+          bundle: [
+            'out/js/*.js',
+            'out/js/controllers/*.js',
+            'out/js/services/native/*.js',
+            'out/js/services/express/*.js',
+            'out/js/services/*.js',
+            'out/js/directives/*.js'
+          ]
+        },
+        styles: {
+          bundle: 'out/css/*.css'
+        }
+      }
     }
   });
 
@@ -86,7 +102,6 @@ module.exports = function(grunt) {
       linux64: false,
       version: '0.11.0'
     },
-    //out: ['./out']
     out: ['./out/**/*']
   });
 
@@ -128,7 +143,8 @@ module.exports = function(grunt) {
         args: ['watch']
       }, {
         grunt: true,
-        args: ['connect']
+        args: ['server-run']
+        //args: ['connect']
       }]
     }
   });

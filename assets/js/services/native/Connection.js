@@ -9,7 +9,7 @@ angular
 
   connection.config = require('./config/connection.json');
 
-  var asyncOpen = function(username, password) {
+  connection.open = function(username, password) {
     var deferred = $q.defer();
     connection.config.user     = username;
     connection.config.password = password;
@@ -23,8 +23,15 @@ angular
     return deferred.promise;
   };
 
-  connection.open = function(username, password) {
-    return asyncOpen(username, password);
+  connection.close = function() {
+    if(!connection.conn) {
+      throw new Error("Not exists open connections.");
+    }
+    connection.conn.close();
+  };
+
+  connection.getSql = function() {
+    return sql;
   };
 
   connection.get = function() {
@@ -32,6 +39,12 @@ angular
       throw new Error("Not exists open connections.");
     }
     return connection.conn;
+  };
+
+  connection.request = function(q) {
+    var request = new sql.Request(conn.get());
+    request.query(q);
+    return request;
   };
 
   return connection;

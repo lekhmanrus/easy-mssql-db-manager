@@ -4,9 +4,10 @@ angular
 .module('EMSSQLDBMApp.services')
 .service('AuthenticationExpress', [ function() {
 
-  var authentication = { };
-  authentication.authenticated = false;
-  authentication.username = false;
+  var authentication = { 
+    authenticated: false,
+    username: false
+  };
 
   authentication.signIn = function(username, password) {
     authentication.authenticated = true;

@@ -32,7 +32,7 @@
   "homepage": "https://github.com/lekhmanrus/easy-mssql-db-manager",
   
   "window": {
-    "title": "SyMath",
+    "title": "Easy MS SQL DB Manager",
     "icon": "favicon.png",
     "toolbar": true,
     "frame": true,
