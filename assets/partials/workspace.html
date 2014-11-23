@@ -34,7 +34,7 @@
                         rows="3" placeholder="{{ col.name }}"></textarea>
               <input ng-switch-when="number" ng-required="!col.nullable"
                      ng-model="table.newRow[col.name]" type="number"
-                     class="form-control" placeholder="{{ col.name }}" />
+                     placeholder="{{ col.name }}" />
               <input ng-switch-when="checkbox" ng-required="!col.nullable"
                      ng-model="table.newRow[col.name]" type="checkbox"
                      class="form-control" placeholder="{{ col.name }}" />
