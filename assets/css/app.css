@@ -76,3 +76,50 @@ span#logo {
 .capitalize {
   text-transform: capitalize;
 }
+
+.my-panel .panel-body {
+  padding: 0px;
+}
+
+.my-panel .panel-body .table {
+  margin: 0px;
+}
+
+th.cell-warning,
+th.cell-danger {
+  width: 39px;
+  text-align: center;
+}
+
+td.cell-warning,
+td.cell-danger {
+  width: 39px;
+  cursor: pointer;
+  text-align: center;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+td.cell-warning {
+  color: #F0AD4E;
+}
+
+td.cell-warning:hover {
+  color: #FFFFFF;
+  background-color: #F0AD4E;
+}
+
+td.cell-danger {
+  color: #D9534F;
+}
+
+td.cell-danger:hover {
+  color: #FFFFFF;
+  background-color: #D9534F;
+}
+
+.my-form textarea {
+  resize: vertical;
+}

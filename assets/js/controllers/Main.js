@@ -2,7 +2,7 @@
 
 angular
 .module('EMSSQLDBMApp.controllers')
-.controller('MainCtrl', [ '$scope', '$timeout', '$modal', 'Authentication', 'Backend', 'Config', function($scope, $timeout, $modal, Authentication, Backend, Config) {
+.controller('MainCtrl', [ '$scope', '$timeout', '$modal', 'Authentication', 'Backend', 'Config', 'Utils', function($scope, $timeout, $modal, Authentication, Backend, Config, Utils) {
 
   $scope.authenticated = Authentication.isAuthenticated();
   $scope.user = {
@@ -14,8 +14,6 @@ angular
   $scope.objects = [ ];
   $scope.activePanel = 0;
   $scope.table = { };
-  $scope.predicate = '';
-  $scope.reverse = false;
 
   var loadNames = function() {
     Config.query({ type: 'table' }, function(tables) {
@@ -49,11 +47,11 @@ angular
   };
 
   $scope.sortBy = function(predicate) {
-    if($scope.predicate == predicate) {
-      $scope.reverse = !$scope.reverse;
+    if($scope.table.predicate == predicate) {
+      $scope.table.reverse = !$scope.table.reverse;
     }
     else {
-      $scope.predicate = predicate;
+      $scope.table.predicate = predicate;
     }
   };
 
@@ -66,8 +64,15 @@ angular
       };
       console.log(Authentication.getPermission());
       if(type === 'table' || type === 'view') {
-        $scope.table.cols = [ ];
-        $scope.table.rows = [ ];
+        $scope.table = {
+          cols: [ ],
+          rows: [ ],
+          addCollapseState: -1,
+          searchText: '',
+          predicate: '',
+          reverse: false,
+          newRow: { }
+        };
         Backend.dbQuery("SELECT * FROM [" + obj.gist + "]", function(row) {
             $scope.table.rows.push(row);
           }, function(columns) {
@@ -94,6 +99,15 @@ angular
         show: true
       });
     };
+  };
+
+  $scope.getInputType = function(dbType) {
+    return Utils.getInputType(dbType);
+  };
+
+  $scope.addNewRow = function() {
+    console.log('newRow');
+    console.log($scope.table.newRow);
   };
 
   $scope.signIn = function() {
