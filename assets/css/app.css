@@ -123,3 +123,8 @@ td.cell-danger:hover {
 .my-form textarea {
   resize: vertical;
 }
+
+.datapicker {
+  z-index: 9999999999999999999999999999999 !important;
+  position: fixed !important;
+}

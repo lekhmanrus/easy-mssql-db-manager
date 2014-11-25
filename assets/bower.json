@@ -32,6 +32,7 @@
     "angular-motion": "latest",
     "angular-resource": "latest",
     "angular-strap": "latest",
+    "bootstrap-additions": "latest",
     "jquery": "latest"
   }
 }

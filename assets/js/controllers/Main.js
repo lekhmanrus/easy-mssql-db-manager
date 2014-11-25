@@ -46,6 +46,18 @@ angular
     });
   };
 
+  var showError = function(message) {
+    $modal({
+      title: 'Error',
+      content: message,
+      show: true
+    });
+  };
+
+  var refresh = function() {
+    $scope.selectObject($scope.curObject.type, $scope.curObject.data);
+  };
+
   $scope.sortBy = function(predicate) {
     if($scope.table.predicate == predicate) {
       $scope.table.reverse = !$scope.table.reverse;
@@ -78,7 +90,9 @@ angular
           }, function(columns) {
             var buf = [ ];
             for(var i in columns) {
-              buf.push(columns[i]);
+              var tmp = columns[i];
+              tmp.inputType = Utils.getInputType(columns[i].type.declaration);
+              buf.push(tmp);
             }
             $scope.table.cols = buf;
           }, function(ret) {
@@ -93,21 +107,18 @@ angular
     }
     catch(e) {
       $scope.loading = false;
-      $modal({
-        title: 'Error',
-        content: e.message,
-        show: true
-      });
+      showError(e.message);
     };
   };
 
-  $scope.getInputType = function(dbType) {
-    return Utils.getInputType(dbType);
-  };
-
   $scope.addNewRow = function() {
-    console.log('newRow');
-    console.log($scope.table.newRow);
+    $scope.loading = true;
+    Backend.dbInsert($scope.curObject.data.gist, $scope.table.newRow, function(a, e) {
+      refresh();
+    }, function(e) {
+      refresh();
+      showError(e.message);
+    });
   };
 
   $scope.signIn = function() {
@@ -121,11 +132,7 @@ angular
       })
       .catch(function(e) {
         $scope.loading = false;
-        $modal({
-          title: 'Error',
-          content: e.message,
-          show: true
-        });
+        showError(e.message)
       });
   };
 

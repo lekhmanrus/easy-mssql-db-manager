@@ -21,29 +21,37 @@
     </div>
     <div class="panel-collapse" bs-collapse-target>
       <div class="panel-body">
-        <form ng-submit="addNewRow()" class="form-horizontal my-form" role="form">
-          <div ng-repeat="col in table.cols | orderBy:'index'" class="form-group">
+        <form ng-submit="addNewRow()" class="form-horizontal my-form" name="newRow" role="form">
+          <div ng-repeat="col in table.cols | orderBy:'index'" class="form-group" ng-class="{'has-error': newRow[col.name].$invalid}">
             <label class="col-sm-3 control-label">
               {{ col.name }}
-              <span class="glyphicon glyphicon-asterisk text-danger"
-                    aria-hidden="true" ng-hide="col.nullable"></span>
+              <sup>
+                <span class="glyphicon glyphicon-asterisk text-danger"
+                      aria-hidden="true" ng-hide="col.nullable"></span>
+              </sup>
             </label>
-            <div class="col-sm-9" ng-switch on="getInputType(col.type.declaration)">
+            <div class="col-sm-9" ng-switch on="col.inputType">
               <textarea ng-switch-when="textarea" ng-required="!col.nullable"
                         ng-model="table.newRow[col.name]" class="form-control"
-                        rows="3" placeholder="{{ col.name }}"></textarea>
+                        name="{{ table.newRow[col.name] }}" rows="3"
+                        placeholder="{{ col.name }}"></textarea>
               <input ng-switch-when="number" ng-required="!col.nullable"
                      ng-model="table.newRow[col.name]" type="number"
+                     name="{{ table.newRow[col.name] }}" class="form-control"
                      placeholder="{{ col.name }}" />
               <input ng-switch-when="checkbox" ng-required="!col.nullable"
                      ng-model="table.newRow[col.name]" type="checkbox"
-                     class="form-control" placeholder="{{ col.name }}" />
+                     name="{{ table.newRow[col.name] }}" class="form-control"
+                     placeholder="{{ col.name }}" />
               <input ng-switch-when="date" ng-required="!col.nullable"
-                     ng-model="table.newRow[col.name]" type="date"
-                     class="form-control" placeholder="{{ col.name }}" />
+                     ng-model="table.newRow[col.name]" type="text" bs-datepicker
+                     data-autoclose="1" data-date-format="dd.MM.yyyy"
+                     name="{{ table.newRow[col.name] }}" class="form-control"
+                     placeholder="{{ col.name }}" data-date-type="number" />
               <input ng-switch-when="text" ng-required="!col.nullable"
                      ng-model="table.newRow[col.name]" type="text"
-                     class="form-control" placeholder="{{ col.name }}" />
+                     name="{{ table.newRow[col.name] }}" class="form-control"
+                     placeholder="{{ col.name }}" />
             </div>
           </div>
           <div class="form-group">
