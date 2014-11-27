@@ -13,18 +13,16 @@ connection.connect(function(err) {
     throw err;
   }
 
-  var query = require('./api/query'),
-      users = require('./api/users');
+  var query = require('./api/query');
 
   app
     .use(bodyParser.json())
     .use(express.static(path.join(__dirname, 'out')))
     .use('/query', query(connection))
-    .use('/users', users(connection))
 
     .use(function(req, res, next) {
       res.status = 404;
-      //res.sendFile(path.join(__dirname, 'assets/404.html'));
+      res.sendFile(path.join(__dirname, 'out/404.html'));
     });
 
 });

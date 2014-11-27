@@ -8,19 +8,36 @@ module.exports = function(connection) {
   router.post('/', function(req, res) {
     var q = req.body.query,
         f = false,
-        request = mssql.Request(connection),
-        ret = { };
-    //console.log(this);
-    //console.log("---------");
+        request = new mssql.Request(connection);
+    var ret = {
+      row: [ ],
+      recordset: undefined,
+      done: {
+        status: undefined,
+        val: undefined
+      },
+      error: undefined
+    };
     request.query(q);
     request.on('row', function(row) {
-      ret.row = row;
+      ret.row.push(row);
     });
     request.on('recordset', function(columns) {
       ret.recordset = columns;
+      for(var i in columns) {
+        if(columns[i].type) {
+          ret.recordset[i].type = {
+            declaration: columns[i].type.declaration
+          };
+        }
+        else {
+          ret.recordset[i].type.declaration = "";
+        }
+      }
     });
     request.on('done', function(returnValue) {
-      ret.done = returnValue;
+      ret.done.status = true;
+      ret.done.val = returnValue;
       if(!f) {
         res.json(ret);
         f = true;

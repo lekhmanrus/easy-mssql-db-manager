@@ -34,7 +34,7 @@
   "window": {
     "title": "Easy MS SQL DB Manager",
     "icon": "favicon.png",
-    "toolbar": true,
+    "toolbar": false,
     "frame": true,
     "min_width": 1000,
     "min_height": 500,

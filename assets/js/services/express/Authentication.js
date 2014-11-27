@@ -2,7 +2,7 @@
 
 angular
 .module('EMSSQLDBMApp.services')
-.service('AuthenticationExpress', [ '$http', '$q', 'Backend', function($http, $q, backend) {
+.service('AuthenticationExpress', [ '$q', 'Backend', function($q, backend) {
 
   var authentication = { 
     authenticated: false,

@@ -46,6 +46,10 @@ angular
         return 'date';
       }
       return 'text';
+    },
+
+    isExpress: function() {
+      return typeof(require) === 'undefined';
     }
   };
 

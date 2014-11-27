@@ -261,12 +261,14 @@ angular
     });
   };
 
-  if(typeof(require) === 'undefined') {
+  if(Utils.isExpress()) {
+    $scope.loading = true;
     Config.get({ type: 'express-connection' }, function(config) {
-      Authentication.signIn(config.user, config.password)
-        .catch(function(e) {
-          showError(e.message)
-        });
+      $scope.user = {
+        username: config.user,
+        password: config.password
+      };
+      $scope.signIn();
     });
   }
 
@@ -279,7 +281,6 @@ angular
         loadNames();
         $scope.loading = false;
         $scope.permissions = Authentication.getPermission();
-        console.log($scope.permissions);
       })
       .catch(function(e) {
         $scope.loading = false;
@@ -290,6 +291,10 @@ angular
   $scope.signOut = function() {
     $scope.authenticated = Authentication.signOut();
     $scope.user.password = '';
+  };
+
+  $scope.isExpress = function() {
+    return Utils.isExpress();
   };
 
 }]);

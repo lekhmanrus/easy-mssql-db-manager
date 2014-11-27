@@ -100,10 +100,10 @@ module.exports = function(grunt) {
   grunt.config.set('nodewebkit', {
     options: {
       buildDir: './build',
-      mac: false,
+      mac: true,
       win: true,
-      linux32: false,
-      linux64: false,
+      linux32: true,
+      linux64: true,
       version: '0.11.0'
     },
     out: ['./out/**/*']

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <title>Easy MS SQL DB Manager</title>
+  <style type="text/css">
+    html { 
+      width: 100%; 
+      height: 100%; 
+      background: url(images/404.png) center center no-repeat;
+    }
+
+    .btn {
+      position: fixed !important;
+      bottom: 50px;
+      right: 50px;
+      text-decoration: none;
+      border: none;
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+      background: none;
+      cursor: pointer;
+      padding: 25px 80px;
+      display: inline-block;
+      margin: 15px 30px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      outline: none;
+      position: relative;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+
+    .btn:after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+
+    .btn-1 {
+      border: 3px solid #F0AD4E;
+      color: #F0AD4E;
+    }
+
+    .btn-1e {
+      overflow: hidden;
+    }
+
+    .btn-1e:after {
+      width: 100%;
+      height: 0;
+      top: 50%;
+      left: 50%;
+      background: #F0AD4E;
+      opacity: 0;
+      -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      -moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    }
+
+    .btn-1e:hover,
+    .btn-1e:active {
+      color: #FFFFFF;
+    }
+
+    .btn-1e:hover:after {
+      height: 260%;
+      opacity: 1;
+    }
+
+    .btn-1e:active:after {
+      height: 400%;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="btn btn-1 btn-1e">Go home</a>
+</body>
+</style>
