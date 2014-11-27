@@ -1,4 +1,4 @@
-<div class="pull-right">
+<div ng-show="table.rows.length" class="pull-right">
   <div class="form-group has-feedback">
     <input ng-model="table.searchText" type="search" class="form-control" placeholder="Search" />
     <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
@@ -9,7 +9,7 @@
   {{ curObject.type }} <small>&laquo;{{ curObject.data.name }}&raquo;</small>
 </h1>
 
-<div class="panel-group" ng-model="table.addCollapseState" bs-collapse>
+<div ng-show="curObject.type === 'table' && permissions.indexOf('INSERT') !== -1" class="panel-group" ng-model="table.addCollapseState" bs-collapse>
   <div class="panel panel-success">
     <div class="panel-heading" bs-collapse-toggle>
       <h4 class="panel-title">
@@ -21,8 +21,8 @@
     </div>
     <div class="panel-collapse" bs-collapse-target>
       <div class="panel-body">
-        <form ng-submit="addNewRow()" class="form-horizontal my-form" name="newRow" role="form">
-          <div ng-repeat="col in table.cols | orderBy:'index'" class="form-group" ng-class="{'has-error': newRow[col.name].$invalid}">
+        <form ng-submit="addNewRow()" class="form-horizontal my-form" role="form">
+          <div ng-repeat="col in table.cols | orderBy:'index'" class="form-group">
             <label class="col-sm-3 control-label">
               {{ col.name }}
               <sup>
@@ -32,26 +32,20 @@
             </label>
             <div class="col-sm-9" ng-switch on="col.inputType">
               <textarea ng-switch-when="textarea" ng-required="!col.nullable"
-                        ng-model="table.newRow[col.name]" class="form-control"
-                        name="{{ table.newRow[col.name] }}" rows="3"
-                        placeholder="{{ col.name }}"></textarea>
+                        ng-model="table.newRow[col.name].val" class="form-control"
+                        rows="3" placeholder="{{ col.name }}"></textarea>
               <input ng-switch-when="number" ng-required="!col.nullable"
-                     ng-model="table.newRow[col.name]" type="number"
-                     name="{{ table.newRow[col.name] }}" class="form-control"
-                     placeholder="{{ col.name }}" />
+                     ng-model="table.newRow[col.name].val" type="number"
+                     class="form-control" placeholder="{{ col.name }}" />
               <input ng-switch-when="checkbox" ng-required="!col.nullable"
-                     ng-model="table.newRow[col.name]" type="checkbox"
-                     name="{{ table.newRow[col.name] }}" class="form-control"
-                     placeholder="{{ col.name }}" />
+                     ng-model="table.newRow[col.name].val" type="checkbox"
+                     class="form-control" placeholder="{{ col.name }}" />
               <input ng-switch-when="date" ng-required="!col.nullable"
-                     ng-model="table.newRow[col.name]" type="text" bs-datepicker
-                     data-autoclose="1" data-date-format="dd.MM.yyyy"
-                     name="{{ table.newRow[col.name] }}" class="form-control"
-                     placeholder="{{ col.name }}" data-date-type="number" />
+                     ng-model="table.newRow[col.name].val" type="date"
+                     class="form-control" placeholder="{{ col.name }}" />
               <input ng-switch-when="text" ng-required="!col.nullable"
-                     ng-model="table.newRow[col.name]" type="text"
-                     name="{{ table.newRow[col.name] }}" class="form-control"
-                     placeholder="{{ col.name }}" />
+                     ng-model="table.newRow[col.name].val" type="text"
+                     class="form-control" placeholder="{{ col.name }}" />
             </div>
           </div>
           <div class="form-group">
@@ -65,7 +59,36 @@
   </div>
 </div>
 
-<div class="panel-group" bs-collapse>
+<div ng-show="curObject.type === 'function' || curObject.type === 'procedure'" class="well">
+  <h3>Parameters</h3>
+  
+  <form ng-submit="execProc()" class="form-inline" role="form">
+    <div class="form-group my-input" ng-repeat="param in params" ng-switch on="param.inputType">
+      <label ng-bind="param.name"></label>
+      <textarea ng-switch-when="textarea"                 ng-model="param.val" class="form-control"
+                rows="3" placeholder="{{ param.name }}"></textarea>
+      <input ng-switch-when="number" type="number"
+             ng-model="param.val"
+             class="form-control" placeholder="{{ param.name }}" />
+      <input ng-switch-when="checkbox" type="checkbox"
+             ng-model="param.val"
+             class="form-control" placeholder="{{ param.name }}" />
+      <input ng-switch-when="date" type="date"
+             ng-model="param.val"
+             class="form-control" placeholder="{{ param.name }}" />
+      <input ng-switch-when="text" type="text"
+             ng-model="param.val"
+             class="form-control" placeholder="{{ param.name }}" />
+      &nbsp;
+    </div>
+    <div class="form-group my-input">
+      <button type="submit" class="btn btn-primary btn-button">Execute</button>
+    </div>
+  </form>
+
+</div>
+
+<div ng-show="table.rows.length" class="panel-group" bs-collapse>
   <div class="panel panel-default my-panel">
     <div class="panel-heading" bs-collapse-toggle>
       <h4 class="panel-title">
@@ -78,7 +101,7 @@
     <div class="panel-collapse" data-start-collapsed="true" bs-collapse-target>
       <div class="panel-body">
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hovered">
               <thead>
                 <tr>
                   <th ng-repeat="col in table.cols | orderBy:'index'">
@@ -86,13 +109,13 @@
                        data-animation="am-fade-and-slide-bottom" bs-tooltip
                        ng-click="sortBy(col.name)" ng-bind="col.name"></a>
                   </th>
-                  <th class="cell-warning">
+                  <th ng-show="curObject.type === 'table' && permissions.indexOf('UPDATE') !== -1" class="cell-warning">
                     <span class="glyphicon glyphicon-edit text-warning"
                           aria-hidden="true" data-placement="top"
                           data-title="Edit" bs-tooltip
                           data-animation="am-fade-and-slide-bottom"></span>
                   </th>
-                  <th class="cell-danger">
+                  <th ng-show="curObject.type === 'table' && permissions.indexOf('UPDATE') !== -1" class="cell-danger">
                     <span class="glyphicon glyphicon-remove text-danger"
                           aria-hidden="true" data-placement="top"
                           data-title="Delete" bs-tooltip
@@ -102,14 +125,18 @@
               </thead>
               <tbody>
                 <tr ng-repeat="row in table.rows | orderBy:table.predicate:table.reverse | filter:table.searchText">
-                  <td ng-repeat="col in table.cols | orderBy:'index'"
-                      ng-bind="row[col.name]"></td>
-                  <td class="cell-warning">
+                  <td ng-repeat="col in table.cols | orderBy:'index'">
+                    <span ng-if="col.inputType != 'date'" ng-bind="row[col.name]"></span>
+                    <span ng-if="col.inputType == 'date'">{{ row[col.name] | date:'dd.MM.yyyy HH:mm:ss' }}</span>
+                  </td>
+                  <td ng-show="curObject.type === 'table' && permissions.indexOf('UPDATE') !== -1" class="cell-warning"
+                      ng-click="showModalUpdateRow(row.id, row)">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"
                           data-placement="top" data-title="Edit" bs-tooltip
                           data-animation="am-fade-and-slide-bottom"></span>
                   </td>
-                  <td class="cell-danger">
+                  <td ng-show="curObject.type === 'table' && permissions.indexOf('UPDATE') !== -1" class="cell-danger"
+                      ng-click="showModalDeleteRow(row.id)">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"
                           data-placement="top" data-title="Delete" bs-tooltip
                           data-animation="am-fade-and-slide-bottom"></span>

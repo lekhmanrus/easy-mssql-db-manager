@@ -36,9 +36,9 @@
     "icon": "favicon.png",
     "toolbar": true,
     "frame": true,
-    "min_width": 900,
-    "min_height": 370,
-    "width": 900,
+    "min_width": 1000,
+    "min_height": 500,
+    "width": 1000,
     "height": 657,
     "position": "center"
   },

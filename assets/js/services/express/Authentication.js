@@ -2,7 +2,7 @@
 
 angular
 .module('EMSSQLDBMApp.services')
-.service('AuthenticationExpress', [ '$q', 'Backend', function($q, backend) {
+.service('AuthenticationExpress', [ '$http', '$q', 'Backend', function($http, $q, backend) {
 
   var authentication = { 
     authenticated: false,
@@ -18,33 +18,25 @@ angular
     if(!password) {
       deferred.reject(new Error("Password is empty."));
     }
-    /*conn
-      .open(username, password)
-      .then(function() {
-        var q = "SELECT [p].[permission_name] ";
-        q += "FROM [sys].[database_principals] [dp] ";
-        q += "INNER JOIN [sys].[database_role_members] [drm] ON [drm].[member_principal_id] = [dp].[principal_id] ";
-        q += "INNER JOIN [sys].[database_permissions] [p] ON [p].[grantee_principal_id] = [drm].[role_principal_id] ";
-        q += "WHERE [dp].[name] = '" + username + "';";
-        backend.dbQuery(q, function(row) {
-            authentication.permissions.push(row.permission_name);
-          }, null, function(res) {
-            authentication.authenticated = true;
-            authentication.username = username;
-            deferred.resolve(authentication.authenticated);
-          }, function(err) {
-            deferred.reject(err);
-          }
-        );
-      })
-      .catch(function(e) {
-        deferred.reject(e);
-      });*/
+    var q = "SELECT [p].[permission_name] ";
+    q += "FROM [sys].[database_principals] [dp] ";
+    q += "INNER JOIN [sys].[database_role_members] [drm] ON [drm].[member_principal_id] = [dp].[principal_id] ";
+    q += "INNER JOIN [sys].[database_permissions] [p] ON [p].[grantee_principal_id] = [drm].[role_principal_id] ";
+    q += "WHERE [dp].[name] = '" + username + "';";
+    backend.dbQuery(q, function(row) {
+        authentication.permissions.push(row.permission_name);
+      }, null, function(res) {
+        authentication.authenticated = true;
+        authentication.username = username;
+        deferred.resolve(authentication.authenticated);
+      }, function(err) {
+        deferred.reject(err);
+      }
+    );
     return deferred.promise;
   };
 
   authentication.signOut = function() {
-    //conn.close();
     authentication.authenticated = false;
     authentication.permissions = [ ];
     return authentication.authenticated;

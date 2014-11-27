@@ -26,10 +26,10 @@
     </div>
   </div>
 
-  <div ng-if="!authenticated" ng-include="'partials/sign-in.html'"
+  <div ng-if="!authenticated && typeof(require) !== 'undefined'" ng-include="'partials/sign-in.html'"
        class="container signin-container am-fade"></div>
 
-  <div ng-if="authenticated" class="main-container am-fade">
+  <div ng-if="authenticated || typeof(require) === 'undefined'" class="main-container am-fade">
 
     <div ng-include="'partials/menu.html'"></div>
 

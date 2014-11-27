@@ -1,0 +1,44 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide(); clearUpdateForm()">&times;</button>
+        <h4 class="modal-title">Updating</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal my-form" role="form">
+          <div ng-repeat="col in table.cols | orderBy:'index'" class="form-group">
+            <label class="col-sm-3 control-label">
+              {{ col.name }}
+              <sup>
+                <span class="glyphicon glyphicon-asterisk text-danger"
+                      aria-hidden="true" ng-hide="col.nullable"></span>
+              </sup>
+            </label>
+            <div class="col-sm-9" ng-switch on="col.inputType">
+              <textarea ng-switch-when="textarea" ng-required="!col.nullable"
+                        ng-model="table.updRow[col.name].val" class="form-control"
+                        rows="3" placeholder="{{ col.name }}"></textarea>
+              <input ng-switch-when="number" ng-required="!col.nullable"
+                     ng-model="table.updRow[col.name].val" type="number"
+                     class="form-control" placeholder="{{ col.name }}" />
+              <input ng-switch-when="checkbox" ng-required="!col.nullable"
+                     ng-model="table.updRow[col.name].val" type="checkbox"
+                     class="form-control" placeholder="{{ col.name }}" />
+              <input ng-switch-when="date" ng-required="!col.nullable"
+                     ng-model="table.updRow[col.name].val" type="date"
+                     class="form-control" placeholder="{{ col.name }}" />
+              <input ng-switch-when="text" ng-required="!col.nullable"
+                     ng-model="table.updRow[col.name].val" type="text"
+                     class="form-control" placeholder="{{ col.name }}" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="$hide(); clearUpdateForm()">No, close</button>
+        <button type="button" class="btn btn-warning" ng-click="updateRow(); $hide()">Yes, update</button>
+      </div>
+    </div>
+  </div>
+</div>

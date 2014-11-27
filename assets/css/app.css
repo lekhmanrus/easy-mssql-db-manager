@@ -128,3 +128,11 @@ td.cell-danger:hover {
   z-index: 9999999999999999999999999999999 !important;
   position: fixed !important;
 }
+
+.table-hovered tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.form-inline .form-group.my-input {
+  margin-bottom: 11px !important;
+}

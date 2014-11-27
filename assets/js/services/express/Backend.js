@@ -2,25 +2,21 @@
 
 angular
 .module('EMSSQLDBMApp.services')
-.service('BackendExpress', [ function() {
+.service('BackendExpress', [ '$http', function($http) {
 
   return {
-    /*dbQuery: function(query, onRowCb, onRecordSetCb, onDoneCb, onErrorCb) {
-      var res = conn.request(query);
-      if(onRowCb) {
-        res.on('row', onRowCb);
-      }
-      if(onRecordSetCb) {
-        res.on('recordset', onRecordSetCb);
-      }
-      if(onDoneCb) {
-        res.on('done', onDoneCb);
-      }
-      if(onErrorCb) {
-        res.on('error', onErrorCb);
-      }
-      return res;
-    }*/
+    dbQuery: function(query, onRowCb, onRecordSetCb, onDoneCb, onErrorCb) {
+
+      $http.post('/query', { query: query })
+      .success(function(data, status, headers, config) {
+        console.log("success");
+        console.log(data, status, headers, config);
+      })
+      .error(function(data, status, headers, config) {
+        console.log("error");
+        console.log(data, status, headers, config);
+      });
+    }
   };
 
 }]);

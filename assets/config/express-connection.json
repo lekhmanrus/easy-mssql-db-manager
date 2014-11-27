@@ -1,5 +1,7 @@
 {
   "server": "L",
+  "user": "Admin",
+  "password": "pwd123^7",
   "database": "BuildingOrganization",
   "stream": true,
   "options": {
